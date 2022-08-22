@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#99000000">
+
+    <SeekBar
+        android:id="@+id/shape_sb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:maxHeight="1dp"
+        android:minHeight="1dp"
+        android:progressDrawable="@drawable/seekbar"
+        android:thumb="@drawable/beauty_seek_thumb"
+        android:layout_marginTop="40dp"/>
+    <!-- 底部-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/beauty_shape_item_list"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="13dp"
+        android:layout_below="@+id/shape_sb"/>
+
+</RelativeLayout>

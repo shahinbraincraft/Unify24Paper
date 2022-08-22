@@ -1,0 +1,17 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="video_fragment_play_bar_height">38dp</dimen>
+    <dimen name="video_fragment_play_button_height">21dp</dimen>
+    <dimen name="video_fragment_play_button_width">17dp</dimen>
+    <dimen name="video_fragment_play_button_margin_left">15dp</dimen>
+
+    <dimen name="video_fragment_play_time_text_size">10sp</dimen>
+    <dimen name="video_fragment_current_time_text_margin_left">12dp</dimen>
+    <dimen name="video_fragment_current_time_text_margin_right">-7.5dp</dimen>
+    <dimen name="video_fragment_total_time_text_margin_right">15dp</dimen>
+    <dimen name="video_fragment_total_time_text_margin_left">-7.5dp</dimen>
+    <dimen name="video_fragment_seek_bar_max_min_height">2.5dp</dimen>
+    <!-- 水印 -->
+    <dimen name="edit_waterMark_width">63dp</dimen>
+    <dimen name="edit_waterMark_height">100dp</dimen>
+</resources>

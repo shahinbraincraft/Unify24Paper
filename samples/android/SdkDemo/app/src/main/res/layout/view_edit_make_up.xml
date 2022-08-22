@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/makeup_top_layout"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_height="152dp">
+
+
+
+
+    </RelativeLayout>
+
+
+
+    <!-- 底部-->
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#00000000">
+
+        <RelativeLayout
+            android:id="@+id/top_seek_container"
+            android:layout_width="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_height="152dp">
+
+            <!--美妆seekbar-->
+            <com.meishe.sdkdemo.view.MagicProgress
+                android:id="@+id/seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="@dimen/dp62"
+                android:layout_marginRight="@dimen/dp62"
+                android:focusable="true"
+                android:progressDrawable="@drawable/seekbar"
+                android:thumb="@drawable/beauty_seek_thumb"
+                android:visibility="invisible"
+                app:textSizeMagic="12sp"
+                />
+
+            <LinearLayout
+                android:id="@+id/makeup_color_hint_layout"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginLeft="@dimen/dp62"
+                android:layout_marginRight="@dimen/dp62"
+                android:layout_below="@+id/seek_bar"
+                android:background="@drawable/makeup_color_hint"
+                android:visibility="invisible">
+
+                <TextView
+                    android:id="@+id/tv_alpha"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#B3ffffff"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_color"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textColor="#B3ffffff"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+<!--
+            <com.meishe.sdkdemo.view.EditColorPickerView
+                android:id="@+id/color_picker_view"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp20"
+                android:visibility="invisible" />-->
+
+
+            <com.meishe.sdkdemo.view.ColorSeekBar
+                android:id="@+id/color_seekBar"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="@dimen/dp62"
+                android:layout_marginRight="@dimen/dp62"
+                android:layout_height="38dp"
+                android:layout_below="@+id/makeup_color_hint_layout"
+                android:layout_centerHorizontal="true"
+                android:visibility="invisible" />
+
+            <com.meishe.sdkdemo.view.ButtonRoundColorView
+                android:id="@+id/custom_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="9.5dp"
+                app:roundTextSize="7dp"
+                app:selectRoundStrokeColor="@color/white"
+                app:selectStrokeWidth="1dp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/makeup_select_rl"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/top_seek_container"
+            android:layout_height="@dimen/dp75"
+
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/change_layout"-->
+<!--                android:layout_width="@dimen/dp55"-->
+<!--                android:layout_height="@dimen/dp75"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--               >-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/change_btn"-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="55dp"-->
+<!--                    android:src="@mipmap/ic_makeup_custom" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/change_btn_text"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:text="@string/make_up_custom"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    android:textSize="12sp" />-->
+
+<!--            </RelativeLayout>-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/beauty_makeup_item_list"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp75"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="13dp"
+                tools:ignore="RtlCompat" />
+
+        </LinearLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/makeup_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_below="@+id/makeup_select_rl"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp50"
+            android:background="@color/transparent"
+            app:tabIndicatorColor="@color/blue_63"
+            app:tabIndicatorFullWidth="false"
+            app:tabMinWidth="@dimen/dp20"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@android:color/transparent" />
+
+    </RelativeLayout>
+</RelativeLayout>

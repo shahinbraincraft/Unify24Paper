@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/spaceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+        </FrameLayout>
+
+        <RadioButton
+            android:id="@+id/rd_saturation"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="saturation">
+        </RadioButton>
+
+        <SeekBar
+            android:id="@+id/seek_bar"
+            android:max="100"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+        </SeekBar>
+
+        <RadioButton
+            android:id="@+id/rd_storyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:text="saturation (by storyboard)">
+        </RadioButton>
+
+        <CheckBox
+            android:id="@+id/rd_circle_in"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp50"
+            android:text="circle in (transition)"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp20">
+        </CheckBox>
+    </LinearLayout>
+
+</RelativeLayout>
+

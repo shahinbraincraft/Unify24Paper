@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply from: '../../../../ftp-download.gradle'
+apply from: '../ftp-util.gradle'
+def extraLibPath = getSdkExtraPath(rootDir.getAbsolutePath() + "/../../../meishesdk_libpath.conf")
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.meicam.vrview"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles.add(file('../proguard-gvr.txt'))
+        }
+    }
+    task libCopy(type: Copy) {
+        copy {
+            from extraLibPath + 'lib/android_armv7'
+            into 'src/main/jniLibs/armeabi-v7a'
+            include '*.so'
+        }
+    }
+    task downloadFilesWindows() {
+        String oldAssetsVersion = readFileInfo(rootProject.ext.destAssetsFile + File.separator + "version.txt")
+        checkVersionAndDownloadFile(rootProject.ext.originFtpAssets, rootProject.ext.destAssetsFile, oldAssetsVersion, rootProject.ext.assetsTempFile)
+
+        String oldLibsVersion = readFileInfo(rootProject.ext.destLibsFile + File.separator + "version.txt")
+        checkVersionAndDownloadFile(rootProject.ext.originFtpLibs, rootProject.ext.destLibsFile, oldLibsVersion, rootProject.ext.libTempFile)
+    }
+    task downloadFiles() {
+        doFirst {
+            println 'web-ftp:sync start'
+            downloadFtpFiles(rootProject.ext.destAssetsFile, rootProject.ext.originFtpAssets,
+                    rootProject.ext.destLibsFile, rootProject.ext.originFtpLibs)
+            println 'web-ftp:sync end'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: extraLibPath + 'lib/android_jar')
+    implementation 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-7'
+}

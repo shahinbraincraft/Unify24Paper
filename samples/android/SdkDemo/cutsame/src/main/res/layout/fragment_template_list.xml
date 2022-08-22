@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_search_hint"
+        android:layout_width="@dimen/dp_px_1000"
+        android:layout_height="@dimen/dp_px_100"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp_px_150"
+        android:background="@drawable/bg_rectangle_round_black_282828"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp_px_114"
+        android:paddingLeft="@dimen/dp_px_114"
+        android:paddingEnd="@dimen/dp_px_50"
+        android:paddingRight="@dimen/dp_px_50"
+        android:text="@string/app_name"
+        android:textColor="@color/gray_a4a"
+        android:textSize="@dimen/sp_px_33"
+        android:visibility="gone" />
+
+    <ImageView
+        android:layout_width="@dimen/dp_px_40"
+        android:layout_height="@dimen/dp_px_40"
+        android:layout_alignStart="@+id/tv_search_hint"
+        android:layout_alignLeft="@+id/tv_search_hint"
+        android:layout_marginStart="@dimen/dp_px_40"
+        android:layout_marginLeft="@dimen/dp_px_40"
+        android:layout_marginTop="@dimen/dp_px_180"
+        android:contentDescription="@null"
+        android:src="@mipmap/ic_search"
+        android:visibility="gone" />
+
+    <com.meishe.third.tablayout.SlidingTabLayout
+        android:id="@+id/tl_template_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_px_100"
+        android:layout_below="@+id/tv_search_hint"
+        android:layout_marginLeft="@dimen/dp_px_30"
+        android:layout_marginRight="@dimen/dp_px_30"
+        tl:tl_indicator_color="@color/red_ff365"
+        tl:tl_indicator_height="@dimen/dp_px_6"
+        tl:tl_indicator_width="@dimen/dp_px_30"
+        tl:tl_tab_space_equal="true"
+        tl:tl_tab_width="@dimen/dp_px_168"
+        tl:tl_textSelectColor="@color/white"
+        tl:tl_textSize="@dimen/sp_px_39"
+        tl:tl_textUnselectedColor="@color/white_5" />
+    <!--    <android.support.design.widget.TabLayout
+            android:id="@+id/tl_template_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_search_hint"
+            android:layout_marginTop="@dimen/dp_px_30"
+            app:tabIndicatorColor="@color/red_ff365"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="@dimen/dp_px_6"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextColor="@color/white_5" />-->
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tl_template_title"
+        android:layout_marginTop="@dimen/dp_px_30" />
+</RelativeLayout>

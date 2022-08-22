@@ -1,0 +1,4 @@
+include ':app' , ':libBase', ':libEngine', ':cutsame',':libNet',':libPlayer',':libCommon'
+rootProject.name = 'SdkDemo'
+include ':moduleMakeupCompose'
+include ':modulearscene'

@@ -1,0 +1,5 @@
+<resources >
+    <string name="zeroZZZ">00:00</string>
+    <string name="prompt">提示</string>
+    <string name="tv_two_finger_scale">使用双指缩放</string>
+</resources>

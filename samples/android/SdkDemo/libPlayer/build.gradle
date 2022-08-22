@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.android.extCompileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.android.extMinSdkVersion
+        targetSdkVersion rootProject.android.extTargetSdkVersion
+        versionCode rootProject.config.extVersionCode
+        versionName rootProject.config.extVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation rootProject.ext.testDependencies.extTestJunit
+    androidTestImplementation rootProject.ext.testDependencies.extAndroidTestRunner
+    androidTestImplementation rootProject.ext.testDependencies.extTestEspresso
+    implementation rootProject.ext.dependencies.extAndroidXDesign
+    implementation rootProject.ext.dependencies.extAppcompat
+    implementation rootProject.ext.dependencies.extAppcompatRecycler
+    implementation rootProject.ext.dependencies.extConstraintLayout
+    implementation project(path: ':libBase')
+    implementation project(path: ':libEngine')
+}

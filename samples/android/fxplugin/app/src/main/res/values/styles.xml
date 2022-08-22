@@ -1,0 +1,25 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="tabLayoutTextStyle">
+        <item name="android:textSize">@dimen/tablayout_text_size</item>
+    </style>
+
+    <!-- 这里是使用动画的 -->
+    <style name="BaseAnimationTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/ff000000</item>
+        <item name="colorPrimaryDark">@color/ff000000</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <!--activity的动画-->
+        <!--<item name="android:windowAnimationStyle">@style/HoloThemeActivityAnimation</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+    </style>
+
+</resources>

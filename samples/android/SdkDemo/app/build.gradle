@@ -1,0 +1,338 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    def tempApplicationId = "com.meishe"
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    compileSdkVersion rootProject.android.extCompileSdkVersion
+    buildToolsVersion rootProject.android.extBuildToolsVersion
+    defaultConfig {
+        applicationId tempApplicationId
+        minSdkVersion rootProject.android.extMinSdkVersion
+        targetSdkVersion rootProject.android.extTargetSdkVersion
+        versionCode rootProject.config.extVersionCode
+        versionName rootProject.config.extVersionName
+        buildConfigField "String", "UMENG_KEY", "\"62f0dd5a88ccdf4b7ef9781f\""
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        flavorDimensions "versionCode"
+        vectorDrawables.useSupportLibrary = true
+        ndk {
+            abiFilters "armeabi-v7a", "arm64-v8a"  // 谷歌发版专用
+//            abiFilters "armeabi-v7a" // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
+//            abiFilters "arm64-v8a"
+        }
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/shahin/Desktop/meishe.jks')
+            storePassword 'app001'
+            keyPassword 'app001'
+            keyAlias 'key0'
+        }
+        debug {
+
+        }
+    }
+
+
+    buildTypes {
+
+        debug {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix ".ms106sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            buildConfigField("int", "FACE_MODEL", "106")
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+            manifestPlaceholders = [app_name: "@string/app_name", app_icon: "@mipmap/ic_meishe"]
+        }
+        debug240 {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix ".ms240sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            buildConfigField("int", "FACE_MODEL", "240")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            debuggable true
+            signingConfig signingConfigs.debug
+            manifestPlaceholders = [app_name: "@string/app_name", app_icon: "@mipmap/ic_meishe"]
+        }
+
+
+        ///////////////////////////////////////////////下面部分专门用于发版本/////////////////////////////
+
+        //发版本-商店包的配置
+        release {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix ".videoshow"
+            //changeProguardFile(tempApplicationId + ".videoshow", 'proguard-rules.pro')
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            buildConfigField("int", "FACE_MODEL", "240")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [app_name: "@string/app_name", app_icon: "@mipmap/ic_meishe"]
+        }
+
+        // 发版本-Meicam-ST senior
+        release_MS_ST_240 {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix "st240sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            buildConfigField("int", "FACE_MODEL", "240")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [app_name: "@string/app_name_1", app_icon: "@mipmap/ic_meishe_1"]
+        }
+
+        //发版本-Meicam-ST
+        release_MS_ST_106 {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix "st106sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            buildConfigField("int", "FACE_MODEL", "106")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [app_name: "@string/app_name_2", app_icon: "@mipmap/ic_meishe_2"]
+        }
+
+        //发版本-Meicam senior
+        release_MS_240 {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix "ms240sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            buildConfigField("int", "FACE_MODEL", "240")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [app_name: "@string/app_name_3", app_icon: "@mipmap/ic_meishe_3"]
+        }
+
+        //发版本-Meicam
+        release_MS_106 {
+            matchingFallbacks = ['debug', 'qa', 'release']
+            applicationIdSuffix "ms106sdkdemo"
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            buildConfigField("int", "FACE_MODEL", "106")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [app_name: "@string/app_name_4", app_icon: "@mipmap/ic_meishe_4"]
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+
+
+    }
+
+    repositories {
+        flatDir {
+            dirs './libs'
+//            , '../../../../extrasdk', extraLibPath + 'extrasdk/sdk/android'
+        }
+    }
+
+    productFlavors {
+        _360 {}
+        tencent {}
+        baidu {}
+        oppo {}
+        vivo {}
+        huawei {}
+        xiaomi {}
+        googleplay {}
+    }
+/*    productFlavors.all {
+            //批量修改，类似一个循序遍历
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }*/
+    //对生成的apk进行一些简单的配置
+    applicationVariants.all { variant ->
+        print("=== " + variant.buildType.name + " === ")
+        if (variant.buildType.name.contains("MS_ST_240")) {
+            variant.mergeAssetsProvider.get().doLast {
+                delete fileTree(variant.mergeAssets.outputDir).matching {
+                    include "beauty/makeup/compose/**", "beauty/makeup/custom/**",
+                            "facemode/ms/**", "facemode/st/advance/**", "facemode/fu/**"
+                }
+            }
+        } else if (variant.buildType.name.contains("MS_ST_106")) {
+            variant.mergeAssetsProvider.get().doLast {
+                delete fileTree(variant.mergeAssets.outputDir).matching {
+                    include "beauty/makeup/compose240/**", "beauty/makeup/custom240/**",
+                            "facemode/ms/**", "facemode/st/advance/**", "facemode/st/240/**", "facemode/fu/**"
+                }
+            }
+        } else if (variant.buildType.name.contains("faceU")) {
+            variant.mergeAssetsProvider.get().doLast {
+                delete fileTree(variant.mergeAssets.outputDir).matching {
+                    include "beauty/makeup/compose240/**", "beauty/makeup/custom240/**",
+                            "facemode/ms/**", "facemode/st/**"
+                }
+            }
+        } else if (variant.buildType.name.contains("MS_ST_SUPER")) {
+            variant.mergeAssetsProvider.get().doLast {
+                delete fileTree(variant.mergeAssets.outputDir).matching {
+                    include "beauty/makeup/compose240/**", "beauty/makeup/custom240/**",
+                            "facemode/ms/**", "facemode/st/240/**", "facemode/fu/**"
+                }
+            }
+        } else if (variant.buildType.name == ("\"debug\"") || variant.buildType.name == ("\"release\"")) {
+            variant.mergeAssetsProvider.get().doLast {
+                delete fileTree(variant.mergeAssets.outputDir).matching {
+                    include "beauty/makeup/compose240/**", "beauty/makeup/custom240/**",
+                            "facemode/ms_st_super/**", "facemode/st/**", "facemode/fu/**"
+                }
+            }
+        }
+        variant.outputs.all { output ->
+            def buildName = "com.meishe"
+            def type = variant.buildType.name
+            def releaseApkName = buildName + '_' + variant.productFlavors.get(0).name + '_' + type + "_" + versionName + '_' + releaseTime() + '.apk'
+            outputFileName = releaseApkName
+        }
+    }
+
+    buildFeatures {
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd--HH-mm-ss", TimeZone.getTimeZone("GMT+8"))
+}
+
+void changeProguardFile(String packageName, String proguardFilePath) {
+    // 主要是用于动态修改proguard-rules，
+    println("packageName=" + packageName)
+    println("proguardFilePath=" + proguardFilePath)
+    String content = "-keep public class " + packageName + ".R\$*{public static final int *;}\n"
+    def proguardFile = new File(proguardFilePath)
+    def needAppend = true;
+    if (proguardFile.exists()) {
+        proguardFile.eachLine { line ->
+            if (content.contains(line)) {
+                println("changed proguard already")
+                // 如果已经添加过了就不再添加
+                needAppend = false;
+            }
+        }
+    }
+    if (needAppend) {
+        proguardFile.append(content, "utf-8")
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(path: ':libCommon')
+    implementation project(path: ':libNet')
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation project(path: ':modulearscene')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation rootProject.ext.dependencies.extAndroidXDesign
+    implementation rootProject.ext.dependencies.extAppcompat
+    implementation rootProject.ext.dependencies.extAppcompatRecycler
+    implementation rootProject.ext.dependencies.extConstraintLayout
+    implementation rootProject.ext.dependencies.extOkHttp
+    implementation rootProject.ext.dependencies.extGoogleGson
+    // webpdecoder
+    implementation rootProject.ext.dependencies.extWebpdecoder
+    // glide 4.6.1~4.9.0 (exclude broken version 4.6.0, 4.7.0)
+    implementation rootProject.ext.dependencies.extBumptechGlide
+    annotationProcessor rootProject.ext.dependencies.extGlideAnnotation
+    // 支持 GIF 动图，需要添加
+    implementation rootProject.ext.dependencies.extFresco
+    implementation rootProject.ext.dependencies.extFrescoGif
+    // 支持 WebP （静态图+动图），需要添加
+    implementation rootProject.ext.dependencies.extFrescoWebp
+    // 仅支持 WebP 静态图，需要添加
+    implementation rootProject.ext.dependencies.extFrescoWebpSupport
+
+    testImplementation rootProject.ext.testDependencies.extTestJunit
+    implementation rootProject.ext.dependencies.extWarkizIndicatorseekbar
+    implementation rootProject.ext.dependencies.extAndroidMultidex
+
+
+    implementation rootProject.ext.dependencies.extkotlinStdlibJdk7
+    implementation rootProject.ext.dependencies.extkotlinReflect
+
+
+    annotationProcessor rootProject.ext.dependencies.extLifecycleCompiler
+    implementation rootProject.ext.dependencies.extLifecycleKtx
+    implementation rootProject.ext.dependencies.extLifecycleExtensions
+
+    implementation rootProject.ext.dependencies.extDagger
+    kapt rootProject.ext.dependencies.extDaggerCompiler
+
+    implementation rootProject.ext.dependencies.extDaggerAndroid
+    kapt rootProject.ext.dependencies.extDaggerAndroidProcessor
+
+    implementation rootProject.ext.dependencies.extRxandroid
+    implementation rootProject.ext.dependencies.extRxjava
+
+    implementation rootProject.ext.dependencies.extSmartRefresh
+
+
+    implementation project(path: ':cutsame')
+    implementation project(path: ':libBase')
+    implementation project(':moduleMakeupCompose')
+}
+
+
+if (isConfigPlugin) {
+    apply plugin: 'com.meishe.apkhelper'
+    apply plugin: 'com.meishe.ftpdownload'
+
+    apkHelper {
+        // FirUpload
+        appName = "meishe sdk demo"
+        pgyApiKey = "2de8462a1e70988b6aa26bc2974dbda3"
+        changeLog = "3.5.1验bug版本"
+//        changeLog = "master分支sdk 版本"
+        iconFilePath = rootProject.projectDir.getAbsolutePath() + "/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    }
+
+    ftpConfig {
+        serverIp = "192.168.100.111"
+        serverPort = 21
+        username = "ftpuser"
+        password = "Meishe2020"
+        sourcePath = rootProject.projectDir.getAbsolutePath() + "/app/src/main/assets"
+        remoteFilePath = "/android/SDKdemo/master/assets_master.zip"
+    }
+}
+
+
+

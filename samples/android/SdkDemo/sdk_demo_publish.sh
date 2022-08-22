@@ -1,0 +1,3 @@
+#!/bin/bash
+./gradlew assemble_360Release assembletencentRelease assemblebaiduRelease assembleoppoRelease assemblehuaweiRelease assemblexiaomiRelease assemble_360release_MS_ST_240 assemble_360release_MS_ST_106 assemble_360release_MS_240 assemble_360release_MS_106 bundlegoogleplayrelease assemblevivoRelease
+sh $PWD/jiaguWrapper.sh

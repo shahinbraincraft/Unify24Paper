@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>美摄SDK For Android: AR Scene 技术文档</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">美摄SDK For Android
+   &#160;<span id="projectnumber">3.5.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="PageDoc"><div class="header">
+  <div class="headertitle">
+<div class="title">AR Scene 技术文档 </div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><h1>AR Scene 技术文档 </h1>
+<p><b>说明：</b></p>
+<p>AR Scene开发在拍摄和编辑上有不同的实现，这两种方式略有不同，本文档以拍摄为例进行讲述。</p>
+<div class="image">
+<img src="09280e01e455bce384b4170201d6b9d6.png" alt=""/>
+</div>
+   <h2>概述 </h2>
+<p><b>1.1、AR Scene介绍</b></p>
+<p>AR Scene技术是AR技术的一个分支，将虚拟信息与真实世界巧妙融合，创造出相关场景，将定制好的场景和实物交融，使效果逼真形象。底层原理是模式识别、轮廓识别、流媒体渲染技术，实现对真实世界的增强。AR Scene是通过场景进行现实增强，有效的呈现出增强世界的内容。</p>
+<div class="image">
+<img src="db407ba35b9372f2ae0b53443dec2147.jpg" alt=""/>
+</div>
+   <p>互联网视频中，AR Scene非常常用，通过修饰，构造形象。增强趣味性和动态性。在短视频与直播领域，AR Scene使用更加广泛，成为今天移动视频技术重要的一环。</p>
+<p>从技术本质上讲，AR Scene的本质是对GPU的编程，把编辑、合成、字幕、特效、动画等各种效果融为一体。从一定程度上讲，AR Scene是视频合成渲染技术，需要专业的编辑渲染合成操作，美摄科技多年深耕，研发高效SDK、视频捕捉时动态合成，使用户快速的生成，个性化高质量视频或图片。符合互联网时代对视频增强的要求。</p>
+<div class="image">
+<img src="372257a151a52e56d652a9b80d839343.png" alt=""/>
+</div>
+   <p><b>1.2、美摄SDK对AR Scene功能的支持</b></p>
+<p>美摄SDK通过多媒体和三维建模，在桌面端、Web端、移动端都对AR Scene提供了完整的支持。</p>
+<p>目前美摄SDK AR Scene功能主要偏重于人脸轮廓检测，定位人脸的边界，在检测后添加相关场景或者对人脸现有部分进行改变。后期美摄AR Scene技术将会有更多的支持，更细腻的处理。</p>
+<div class="image">
+<img src="b7bc7bc56a89a5cad671dfc3158b29a1.png" alt=""/>
+</div>
+   <p><b>1.3、AR Scene整体结构</b></p>
+<div class="image">
+<img src="ef3aee4492c12ae8054fb1f506dfd5cb.png" alt=""/>
+</div>
+   <p>说明：磨皮(1/2/3)，美型(1/2)，美白(A/B)在本文档主题7中有解释。</p>
+<h2>2、AR Scene的使用 </h2>
+<p>AR Scene 特效使用是基于人脸点位的特技效果，集成使用流程一般都需要三个步骤：</p>
+<ul>
+<li>1.模型初始化 <br  />
+</li>
+<li>2.添加AR Scene特技</li>
+<li>3.调节特技的参数</li>
+</ul>
+<p><b>2.1、美颜、美型、美妆以及道具，使用的时候都需要模型的初始化，这个是前置操作。</b></p>
+<p>下面是模型的初始化流程</p>
+<div class="fragment"><div class="line"> </div>
+<div class="line">mCanUseARFaceType = NvsStreamingContext.hasARModule();</div>
+</div><!-- fragment --><p>首先判断是否包含AR功能，如果包含再去初始化模型文件，否则会初始化失败</p>
+<p>如果包含AR功能，接下来就可以进行模型初始化操作，**模型初始化操作涉及文件拷贝耗时操作，建议放在子线程去出处理。**</p>
+<p>基础模型初始化部分：</p>
+<div class="fragment"><div class="line">modelPath = <span class="stringliteral">&quot;/facemode/ms/ms_face_v1.2.2.model&quot;</span>;</div>
+<div class="line">     faceModelName = <span class="stringliteral">&quot;ms_face_v1.2.2.model&quot;</span>;</div>
+<div class="line">     className = <span class="stringliteral">&quot;facemode/ms&quot;</span>;</div>
+<div class="line">     <span class="keywordflow">if</span> (BuildConfig.FACE_MODEL == 240) {</div>
+<div class="line">         modelPath = <span class="stringliteral">&quot;/facemode/ms/240/ms_face240_v2.0.0.model&quot;</span>;</div>
+<div class="line">         faceModelName = <span class="stringliteral">&quot;ms_face240_v2.0.0.model&quot;</span>;</div>
+<div class="line">         className = <span class="stringliteral">&quot;facemode/ms/240&quot;</span>;</div>
+<div class="line">     }</div>
+<div class="line">     licensePath = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"> </div>
+<div class="line">     <span class="keywordtype">boolean</span> copySuccess = FileUtils.copyFileIfNeed(MainActivity.this, faceModelName, className);</div>
+<div class="line">     Logger.e(TAG, <span class="stringliteral">&quot;copySuccess--&gt;&quot;</span> + copySuccess);</div>
+<div class="line">     File rootDir = getApplicationContext().getExternalFilesDir(<span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line">     <span class="keywordflow">if</span> (AndroidOS.USE_SCOPED_STORAGE) {</div>
+<div class="line">         rootDir = getApplicationContext().getFilesDir();</div>
+<div class="line">     }</div>
+<div class="line">     String destModelDir = rootDir + modelPath;</div>
+<div class="line">     <span class="keywordtype">boolean</span> initSuccess = NvsStreamingContext.initHumanDetection(MSApplication.getContext(), destModelDir, licensePath,</div>
+<div class="line">             NvsStreamingContext.HUMAN_DETECTION_FEATURE_FACE_LANDMARK | NvsStreamingContext.HUMAN_DETECTION_FEATURE_FACE_ACTION);</div>
+<div class="line">     Logger.e(TAG, <span class="stringliteral">&quot;initSuccess--&gt;&quot;</span> + initSuccess);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">     <span class="keywordflow">if</span> (BuildConfig.FACE_MODEL == 240) {</div>
+<div class="line">         String pePath = <span class="stringliteral">&quot;assets:/facemode/ms/240/pe240_ms_v1.0.0.dat&quot;</span>;</div>
+<div class="line">         <span class="keywordtype">boolean</span> peSuccess = NvsStreamingContext.setupHumanDetectionData(NvsStreamingContext.HUMAN_DETECTION_DATA_TYPE_PE240, pePath);</div>
+<div class="line">         Logger.e(TAG, <span class="stringliteral">&quot;ms240 peSuccess--&gt;&quot;</span> + peSuccess);</div>
+<div class="line">     }</div>
+</div><!-- fragment --><p>上面是基础人脸的模型初始化部分，基本上只要用到AR功能都需要初始化这部分。如果只使用的是106点位，可以不用初始化这个pe240_ms_v1.0.0.dat。</p>
+<p>个性功能的模型初始化，按照增加的功能进行初始化就可以。</p>
+<div class="fragment"><div class="line"> </div>
+<div class="line">String fakeFacePath = <span class="stringliteral">&quot;assets:/facemode/common/fakeface.dat&quot;</span>;</div>
+<div class="line"><span class="keywordtype">boolean</span> fakefaceSuccess = NvsStreamingContext.setupHumanDetectionData(NvsStreamingContext.HUMAN_DETECTION_DATA_TYPE_FAKE_FACE, fakeFacePath);</div>
+<div class="line">Logger.e(TAG, <span class="stringliteral">&quot;fakefaceSuccess--&gt;&quot;</span> + fakefaceSuccess);</div>
+<div class="line"> </div>
+<div class="line">String makeUpPath2 = <span class="stringliteral">&quot;assets:/facemode/common/makeup2_106_v1.0.0.dat&quot;</span>;</div>
+<div class="line"><span class="keywordflow">if</span> (BuildConfig.FACE_MODEL == 240) {</div>
+<div class="line">    makeUpPath2 = <span class="stringliteral">&quot;assets:/facemode/common/makeup2_240_v1.0.0.dat&quot;</span>;</div>
+<div class="line">}</div>
+<div class="line"><span class="keywordtype">boolean</span> makeupSuccess2 = NvsStreamingContext.setupHumanDetectionData(NvsStreamingContext.HUMAN_DETECTION_DATA_TYPE_MAKEUP2, makeUpPath2);</div>
+<div class="line">Logger.e(TAG, BuildConfig.FACE_MODEL + <span class="stringliteral">&quot;makeupSuccess--&gt;&quot;</span> + makeupSuccess2);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">String segPath = <span class="stringliteral">&quot;assets:/facemode/ms/ms_humanseg_v1.0.7.model&quot;</span>;</div>
+<div class="line"><span class="keywordtype">boolean</span> segSuccess = NvsStreamingContext.initHumanDetectionExt(MSApplication.getContext(),</div>
+<div class="line">        segPath, <span class="keyword">null</span>, NvsStreamingContext.HUMAN_DETECTION_FEATURE_SEGMENTATION_BACKGROUND);</div>
+<div class="line">Logger.e(TAG, <span class="stringliteral">&quot;ms segSuccess--&gt;&quot;</span> + segSuccess);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">String halfBodyPath = <span class="stringliteral">&quot;assets:/facemode/ms/ms_halfbodyseg_v1.0.6.model&quot;</span>;</div>
+<div class="line"><span class="keywordtype">boolean</span> halfBodySuccess = NvsStreamingContext.initHumanDetectionExt(MSApplication.getContext(),</div>
+<div class="line">        halfBodyPath, <span class="keyword">null</span>, NvsStreamingContext.HUMAN_DETECTION_FEATURE_SEGMENTATION_HALF_BODY);</div>
+<div class="line">Logger.e(TAG, <span class="stringliteral">&quot;ms halfBodySuccess--&gt;&quot;</span> + halfBodySuccess);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">String segSkyPath = <span class="stringliteral">&quot;assets:/facemode/ms/ms_skyseg_v1.0.0.model&quot;</span>;</div>
+<div class="line"><span class="keywordtype">boolean</span> segSkySuccess = NvsStreamingContext.initHumanDetectionExt(MSApplication.getContext(),</div>
+<div class="line">        segSkyPath, <span class="keyword">null</span>, NvsStreamingContext.HUMAN_DETECTION_FEATURE_SEGMENTATION_SKY);</div>
+<div class="line">Logger.e(TAG, <span class="stringliteral">&quot;ms segSkySuccess--&gt;&quot;</span> + segSkySuccess);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">String handPath = <span class="stringliteral">&quot;assets:/facemode/ms/ms_hand_v1.0.0.model&quot;</span>;</div>
+<div class="line"><span class="keywordtype">boolean</span> handSuccess = NvsStreamingContext.initHumanDetectionExt(MSApplication.getContext(),</div>
+<div class="line">        handPath, <span class="keyword">null</span>, NvsStreamingContext.HUMAN_DETECTION_FEATURE_HAND_LANDMARK | NvsStreamingContext.HUMAN_DETECTION_FEATURE_HAND_ACTION);</div>
+<div class="line">Logger.e(TAG, <span class="stringliteral">&quot;ms handSuccess--&gt;&quot;</span> + handSuccess);</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">modelPath = rootDir + <span class="stringliteral">&quot;/facemode/common/ms_expression_v1.0.2.model&quot;</span>;</div>
+<div class="line">faceModelName = <span class="stringliteral">&quot;ms_expression_v1.0.2.model&quot;</span>;</div>
+<div class="line">String expressionModel = <span class="stringliteral">&quot;facemode/common&quot;</span>;</div>
+<div class="line">FileUtils.copyFileIfNeed(MainActivity.this, faceModelName, expressionModel);</div>
+<div class="line">NvsStreamingContext.initHumanDetectionExt(MSApplication.getContext(),</div>
+<div class="line">        modelPath,</div>
+<div class="line">        <span class="keyword">null</span>,</div>
+<div class="line">        NvsStreamingContext.HUMAN_DETECTION_FEATURE_AVATAR_EXPRESSION);</div>
+</div><!-- fragment --><p>模型介绍：</p>
+<ul>
+<li>fakeface.dat : 假脸模型初始化，凡是道具里边特效**跟随脸部运动**的都需要初始化这个模型，比如如果使用道具里边的面具效果等。</li>
+<li>makeup2_106_v1.0.0.dat：106点位的美妆模型，如果需要集成美妆的功能需要初始化这个模型文件。</li>
+<li>makeup2_240_v1.0.0.dat：240点位的美妆模型文件。</li>
+<li>ms_humanseg_v1.0.7.model：人像背景分割模型，使用到**扣像背景**功能需要初始化这个模型，如果是全身的场景使用这个效果比较好。</li>
+<li>ms_halfbodyseg_v1.0.6.model：半身人像分割模型，这个也是对**扣像背景**功能的支持的，当人像是半身的时候使用这个模型初始化效果比较好。</li>
+<li>ms_skyseg_v1.0.0.model：天空分割模型，这个模型是专门使用于**天空分割功能**，如果不涉及这个场景不需要加载这个模型。</li>
+<li>ms_hand_v1.0.0.model： 手势点位模型，道具里边使用需要**跟随手指动**的特效需要加载这个模型，比如比心效果等。</li>
+<li>ms_expression_v1.0.2.model：avatar模型，**跟随表情动**的特效需要加载这个模型，比如道具里边的狐狸效果等。</li>
+</ul>
+<p>以后的模型都是为了支持个性功能，如果没有用到是不需要加载的，以免增加不必要的内存开销。</p>
+<p><b>2.2、特技的创建</b></p>
+<p>有了前面的前置操作，下面就正式进入AR功能的接入操作，以拍摄添加AR Scene特技为例</p>
+<div class="fragment"><div class="line"> </div>
+<div class="line"><span class="keyword">private</span> <span class="keywordtype">void</span> initArsceneEffect(<span class="keywordtype">boolean</span> isOpenArsceneEffect) {</div>
+<div class="line">    <span class="keywordflow">if</span> (isOpenArsceneEffect &amp;&amp; mArSceneFaceEffect == <span class="keyword">null</span>) {</div>
+<div class="line">        mArSceneFaceEffect = mStreamingContext.appendBuiltinCaptureVideoFx(Constants.AR_SCENE);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">boolean</span> singleBufferMode = parameterValues.isSingleBufferMode();</div>
+<div class="line">    <span class="keywordflow">if</span> (mArSceneFaceEffect != <span class="keyword">null</span>) {</div>
+<div class="line">        <span class="keywordflow">if</span> (BuildConfig.FACE_MODEL == 240) {</div>
+<div class="line">            <span class="comment">//支持240点位设置</span></div>
+<div class="line">            mArSceneFaceEffect.setBooleanVal(<span class="stringliteral">&quot;Use Face Extra Info&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line">        }</div>
+<div class="line">        <span class="comment">//支持的人脸个数，是否需要使用最小的设置</span></div>
+<div class="line">        mArSceneFaceEffect.setBooleanVal(Constants.MAX_FACES_RESPECT_MIN, <span class="keyword">true</span>);</div>
+<div class="line">        <span class="comment">//美颜开关</span></div>
+<div class="line">        mArSceneFaceEffect.setBooleanVal(<span class="stringliteral">&quot;Beauty Effect&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line">        <span class="comment">//美型开关</span></div>
+<div class="line">        mArSceneFaceEffect.setBooleanVal(<span class="stringliteral">&quot;Face Mesh Internal Enabled&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line">        <span class="comment">//高级美颜开关</span></div>
+<div class="line">        mArSceneFaceEffect.setBooleanVal(<span class="stringliteral">&quot;Advanced Beauty Enable&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line">        <span class="comment">//设置单双buffer true 表示开启单buffer模式</span></div>
+<div class="line">        mArSceneFaceEffect.setBooleanVal(<span class="stringliteral">&quot;Single Buffer Mode&quot;</span>, <span class="keyword">true</span>);</div>
+<div class="line"> </div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">}</div>
+</div><!-- fragment --><p>上面是effect的创建以及一些开关设置，这些也是按使用到的具体功能进行设置的。由于底层是需要render操作，如果没有用到不要开启，这样可以减少内存以及cpu的消耗。</p>
+<p><b>2.3美颜功能集成</b></p>
+<p>美颜的集成很简单，只需要调节相应的特技的强度就可以看到效果。比如磨皮的添加</p>
+<div class="fragment"><div class="line">mArSceneFaceEffect.setFloatVal(<span class="stringliteral">&quot;Beauty Strength&quot;</span>, 0.6); </div>
+</div><!-- fragment --><p>这样就可以看到磨皮的效果了，美颜这块的特技都是这样的集成方式。</p>
+<p>凡是**带Advanced 的都是是高级美颜**，如果需要使用都需要将高级美颜开关打开。</p>
+<p>另外有一个特殊的就是高级磨皮</p>
+<div class="fragment"><div class="line">mArSceneFaceEffect.setFloatVal(<span class="stringliteral">&quot;Advanced Beauty Intensity&quot;</span>, 0.5); </div>
+</div><!-- fragment --><p>这样就添加了一个高级磨皮的效果了。</p>
+<p>部分美颜的整理</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">美颜类别 </th><th class="markdownTableHeadNone">名称 </th><th class="markdownTableHeadNone">参数区间  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Beauty Strength </td><td class="markdownTableBodyNone">磨皮 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Advanced Beauty Remove Nasolabial Folds Intensity </td><td class="markdownTableBodyNone">法令纹 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Advanced Beauty Remove Dark Circles Intensity </td><td class="markdownTableBodyNone">黑眼圈 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Advanced Beauty Brighten Eyes Intensity </td><td class="markdownTableBodyNone">亮眼 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Advanced Beauty Whiten Teeth IntensityAdvanced Beauty Whiten Teeth Intensity </td><td class="markdownTableBodyNone">美牙 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Advanced Beauty Intensity </td><td class="markdownTableBodyNone">高级磨皮 </td><td class="markdownTableBodyNone">（0，1）  </td></tr>
+</table>
+<p><b>2.4美型的使用</b></p>
+<p>美型效果是一个特效包，使用这类效果就修要比美颜多一个步骤：特效包的安装操作。</p>
+<div class="fragment"><div class="line">//安装特效包</div>
+<div class="line">StringBuilder sb = new StringBuilder();</div>
+<div class="line">String assetPath=&quot;assets:/beauty/shapePackage/3632E2FF-8760-4D90-A2B6-FFF09C117F5D.1.facemesh&quot;;</div>
+<div class="line">int i = mStreamingContext.getAssetPackageManager().installAssetPackage(assetPath, null, NvsAssetPackageManager.ASSET_PACKAGE_TYPE_FACE_MESH, false, sb);</div>
+<div class="line">if (i != NvsAssetPackageManager.ASSET_PACKAGE_MANAGER_ERROR_NO_ERROR &amp;&amp; i != NvsAssetPackageManager.ASSET_PACKAGE_MANAGER_ERROR_ALREADY_INSTALLED) {</div>
+<div class="line">    return false;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">//设置美型特效</div>
+<div class="line">mArSceneFaceEffect.setStringVal(&quot;Face Mesh Nose Length Custom Package Id&quot;, sb.toString());  //参数的key和特效包是对应的</div>
+<div class="line">mArSceneFaceEffect.setFloatVal(&quot;Face Mesh Nose Length Degree&quot;, 0.6);//参数的key和特效包是对应的</div>
+</div><!-- fragment --><p>注意：对特效id的使用以及强度的设置中的key跟特效包是对应的，特效包不一样key是不一样的。</p>
+<p><b>2.5道具的使用</b></p>
+<p>道具特效是一个特效包，同样需要安装。</p>
+<p>下面是道具的使用</p>
+<div class="fragment"><div class="line">//道具安装</div>
+<div class="line">NvsAssetPackageManager assetPackageManager = mStreamingContext.getAssetPackageManager();</div>
+<div class="line">StringBuilder sceneId = new StringBuilder();</div>
+<div class="line">String arfacePath=&quot;assets:/arface/084A6EC1-43AB-40EF-BBD5-D83F692B011B.3.arscene&quot;;</div>
+<div class="line">int i = assetPackageManager.installAssetPackage(arfacePath, null,</div>
+<div class="line">        NvsAssetPackageManager.ASSET_PACKAGE_TYPE_ARSCENE, true, sceneId);</div>
+<div class="line"> </div>
+<div class="line">//设置道具效果</div>
+<div class="line">mArSceneFaceEffect.setStringVal(&quot;Scene Id&quot;, sceneId);        </div>
+</div><!-- fragment --><p>这样我们就添加了一个道具效果，非常简单。</p>
+<p>如果需要取消到道具效果：</p>
+<div class="fragment"><div class="line">mArSceneFaceEffect.setStringVal(&quot;Scene Id&quot;, &quot;&quot;);</div>
+</div><!-- fragment --><p><b>2.7美妆的使用</b></p>
+<p>美妆分为：单妆和妆容。</p>
+<p>**单妆**：是一个特效包，效果也是单一的比如嘴唇的口红、眼影、眉毛等，单一的效果。</p>
+<div class="fragment"><div class="line"><span class="comment">//美妆的安装</span></div>
+<div class="line">NvsAssetPackageManager assetPackageManager = mStreamingContext.getAssetPackageManager();</div>
+<div class="line">StringBuilder makeupId = <span class="keyword">new</span> StringBuilder();</div>
+<div class="line">String makeupPath=<span class="stringliteral">&quot;assets:/makeup/07E4CE0F-3AEA-4510-8C23-9267522B7BFE.1.makeup&quot;</span>;</div>
+<div class="line"><span class="keywordtype">int</span> i = assetPackageManager.installAssetPackage(makeupPath, <span class="keyword">null</span>,</div>
+<div class="line">        NvsAssetPackageManager.ASSET_PACKAGE_TYPE_MAKEUP , <span class="keyword">true</span>, uuid);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">//单妆使用</span></div>
+<div class="line">mArSceneFaceEffect.setIntVal(<span class="stringliteral">&quot;Makeup Custom Enabled Flag&quot;</span>,</div>
+<div class="line">NvsMakeupEffectInfo.MAKEUP_EFFECT_CUSTOM_ENABLED_FLAG_ALL);</div>
+<div class="line">mArSceneFaceEffect.setColorVal(<span class="stringliteral">&quot;Makeup &quot;</span> + Id + <span class="stringliteral">&quot; Color&quot;</span>, <span class="keyword">new</span> NvsColor(x, x, x,</div>
+<div class="line">x));</div>
+<div class="line">mArSceneFaceEffect.setFloatVal(<span class="stringliteral">&quot;Makeup &quot;</span> + Id + <span class="stringliteral">&quot; Intensity&quot;</span>, x);</div>
+<div class="line">mArSceneFaceEffect.setStringVal(<span class="stringliteral">&quot;Makeup &quot;</span> + Id + <span class="stringliteral">&quot; Package Id&quot;</span>, uuid);</div>
+</div><!-- fragment --><p>这样就添加了一个单妆</p>
+<p>单妆Id的值如下：</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Id </th><th class="markdownTableHeadNone">名称  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Lip </td><td class="markdownTableBodyNone">口红  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Eyebrow </td><td class="markdownTableBodyNone">眉毛  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Eyeshadow </td><td class="markdownTableBodyNone">眼影  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Eyelash </td><td class="markdownTableBodyNone">睫毛  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Eyeliner </td><td class="markdownTableBodyNone">眼线  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Blusher </td><td class="markdownTableBodyNone">腮红  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Shadow </td><td class="markdownTableBodyNone">修容  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Brighten </td><td class="markdownTableBodyNone">高光  </td></tr>
+</table>
+<p>**妆容**：就是几个单妆、美颜以及美型的一个集合，整体调整出来的一个比较好的效果。妆容的接入有一套中间层的API调用，免去了json解析等各种繁琐的操作，可参考sdkdemo。</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">  &quot;name&quot;: &quot;occident&quot;,</div>
+<div class="line">  &quot;uuid&quot;: &quot;76439F13-47FD-4F98-912F-E3B6B2ED7F54&quot;,</div>
+<div class="line">  &quot;version&quot;: 1,</div>
+<div class="line">  &quot;cover&quot;: &quot;cover.png&quot;,</div>
+<div class="line">  &quot;minSdkVersion&quot;: &quot;3.4.0&quot;,</div>
+<div class="line">  &quot;supportedAspectRatio&quot;: &quot;9v16&quot;,</div>
+<div class="line">  &quot;translation&quot;: [</div>
+<div class="line">    {</div>
+<div class="line">      &quot;originalText&quot;: &quot;occident&quot;,</div>
+<div class="line">      &quot;targetLanguage&quot;: &quot;zh_CN&quot;,</div>
+<div class="line">      &quot;targetText&quot;: &quot;欧美素颜&quot;</div>
+<div class="line">    }</div>
+<div class="line">  ],</div>
+<div class="line">  &quot;effectContent&quot;: {</div>
+<div class="line">    &quot;makeupArgs&quot;: [</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Blusher&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Blusher Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;3821DB49-DBEE-40A8-8064-034E329F5E15&quot;,</div>
+<div class="line">        &quot;value&quot;: 1</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Brighten&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Brighten Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;77C2D7B7-4F32-4E13-92F9-0E85EEA9381D&quot;,</div>
+<div class="line">        &quot;value&quot;: 1</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Shadow&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Shadow Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;F98BFAC3-8CAE-46B4-9098-F6C762E486C3&quot;,</div>
+<div class="line">        &quot;value&quot;: 1</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Eyebrow&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Eyebrow Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;D0F81D94-C66A-4523-8008-48C240D1C1EC&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.5</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Eyeshadow&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Eyeshadow Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;95B37789-078E-4CC5-A017-D6D8F1BE5EC1&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.7</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Eyelash&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Eyelash Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;FF251056-7B07-431F-A9A1-8621813EC57C&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.8</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Eyeliner&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Eyeliner Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;71555D37-11DB-4713-A1A2-687FCD5349A9&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.5</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;type&quot;: &quot;Lip&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;className&quot;: &quot;Makeup Lip Package Id&quot;,</div>
+<div class="line">        &quot;uuid&quot;: &quot;7C854DBE-91D2-4573-8E4C-D60CAF06050B&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.8</div>
+<div class="line">      }</div>
+<div class="line">    ],</div>
+<div class="line">    &quot;beauty&quot;: [</div>
+<div class="line">      {</div>
+<div class="line">        &quot;Advanced Beauty Enable&quot;: 1,</div>
+<div class="line">        &quot;Advanced Beauty Type&quot;:1,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;value&quot;: 1</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;className&quot;: &quot;Beauty Whitening&quot;, </div>
+<div class="line">        &quot;Whitening Lut Enabled&quot;: 1,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;value&quot;: 0.3</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;className&quot;: &quot;Beauty Reddening&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;value&quot;: 0.2</div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;className&quot;: &quot;Default Beauty Enabled&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;value&quot;: 0.5 </div>
+<div class="line">      },</div>
+<div class="line">      {</div>
+<div class="line">        &quot;className&quot;: &quot;Default Sharpen Enabled&quot;,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;value&quot;: 0                         </div>
+<div class="line">      }</div>
+<div class="line">    ],</div>
+<div class="line">    &quot;shape&quot;: [</div>
+<div class="line">        {</div>
+<div class="line">          &quot;uuid&quot;: &quot;71C4CF51-09D7-4CB0-9C24-5DE9375220AE&quot;,</div>
+<div class="line">          &quot;type&quot;:&quot;Eye Size&quot;,</div>
+<div class="line">          &quot;className&quot;: &quot;Face Mesh Eye Size Custom Package Id&quot;,</div>
+<div class="line">          &quot;degreeName&quot;:&quot;Face Mesh Eye Size Degree&quot;,</div>
+<div class="line">          &quot;canReplace&quot;: 1,</div>
+<div class="line">          &quot;value&quot;: 1</div>
+<div class="line">        },</div>
+<div class="line">        {</div>
+<div class="line">          &quot;uuid&quot;: &quot;80AED78B-F31A-4772-8D5E-44E4AABAAE32&quot;,</div>
+<div class="line">          &quot;type&quot;:&quot;Face Width&quot;,</div>
+<div class="line">          &quot;className&quot;: &quot;Face Mesh Face Width Custom Package Id&quot;,</div>
+<div class="line">          &quot;degreeName&quot;:&quot;Face Mesh Face Width Degree&quot;,</div>
+<div class="line">          &quot;canReplace&quot;: 1,</div>
+<div class="line">          &quot;value&quot;: 0.8</div>
+<div class="line">        },</div>
+<div class="line">        {</div>
+<div class="line">          &quot;uuid&quot;: &quot;FC7C9104-1FDB-483B-BA31-E2D71807E65A&quot;,</div>
+<div class="line">          &quot;type&quot;:&quot;Hairline Height&quot;,</div>
+<div class="line">          &quot;className&quot;: &quot;Face Mesh Hairline Height Custom Package Id&quot;,</div>
+<div class="line">          &quot;degreeName&quot;:&quot;Face Mesh Hairline Height Degree&quot;,</div>
+<div class="line">          &quot;canReplace&quot;: 1,</div>
+<div class="line">          &quot;value&quot;: 1</div>
+<div class="line">        }</div>
+<div class="line">    ],</div>
+<div class="line">    &quot;microShape&quot;: [</div>
+<div class="line">        {</div>
+<div class="line">          &quot;uuid&quot;: &quot;7425A707-3CD7-40BC-B9F5-D4B61387467D&quot;,</div>
+<div class="line">          &quot;type&quot;:&quot;Temple Width&quot;,</div>
+<div class="line">          &quot;className&quot;: &quot;Face Mesh Temple Width Custom Package Id&quot;,</div>
+<div class="line">          &quot;degreeName&quot;:&quot;Face Mesh Temple Width Degree&quot;,</div>
+<div class="line">          &quot;canReplace&quot;: 1,</div>
+<div class="line">          &quot;value&quot;: 0.3</div>
+<div class="line">        }</div>
+<div class="line">    ],</div>
+<div class="line">    &quot;filter&quot;:[</div>
+<div class="line">      {</div>
+<div class="line">        &quot;isBuiltIn&quot;: 0,</div>
+<div class="line">        &quot;canReplace&quot;: 1,</div>
+<div class="line">        &quot;uuid&quot;: &quot;4EFE3455-C58D-499C-B311-D445F752D567&quot;,</div>
+<div class="line">        &quot;value&quot;: 0.4</div>
+<div class="line">      }</div>
+<div class="line">    ]</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>这就是一个妆容的json数据，json介绍：</p>
+<ul>
+<li>makeupArgs:包含的多个单妆特效</li>
+<li>beauty：包含的多个美颜特效</li>
+<li>shape：包含多个美型的特效</li>
+<li>microShape：包含多个微整形特效（这个就是美颜或者美型）</li>
+<li>filter：包含的多个滤镜滤镜特效</li>
+</ul>
+<p>只要解析这个这个json，并将这些特效应用就是妆容的效果。</p>
+<p>以上代码片段，来自美摄sdk demo的主页面以及拍摄页面，可以直接参考工程进行集成。 </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+制作者 &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

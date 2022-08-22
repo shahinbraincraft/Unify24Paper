@@ -1,0 +1,120 @@
+apply plugin: 'com.android.library'
+apply from: '../../../../ftp-download.gradle'
+apply from: '../ftp-util.gradle'
+def extraLibPath = getSdkExtraPath(rootDir.getAbsolutePath() + "/../../../meishesdk_libpath.conf")
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        ndk {
+            abiFilters "armeabi-v7a","arm64-v8a" // 谷歌发版专用
+        }
+    }
+    buildTypes {
+        release {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release_MS_ST {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release_faceU {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"FaceU\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+        debug_MS_ST {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+        debug_faceU {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"FaceU\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    task libCopy(type: Copy) {
+        copy {
+            from extraLibPath + 'lib/android_armv7'
+            into 'src/main/jniLibs/armeabi-v7a'
+            include '*.so'
+        }
+    }
+    task libCopy1(type: Copy) {
+        copy {
+            from extraLibPath + 'lib/android_arm64'
+            into 'src/main/jniLibs/arm64-v8a'
+            include '*.so'
+        }
+    }
+
+    task downloadFilesWindows() {
+        String oldAssetsVersion = readFileInfo(rootProject.ext.destAssetsFile + File.separator + "version.txt")
+        checkVersionAndDownloadFile(rootProject.ext.originFtpAssets, rootProject.ext.destAssetsFile, oldAssetsVersion, rootProject.ext.assetsTempFile)
+
+        String oldLibsVersion = readFileInfo(rootProject.ext.destLibsFile + File.separator + "version.txt")
+        checkVersionAndDownloadFile(rootProject.ext.originFtpLibs, rootProject.ext.destLibsFile, oldLibsVersion, rootProject.ext.libTempFile)
+    }
+    task downloadFiles() {
+        doFirst {
+            println 'web-ftp:sync start'
+            downloadFtpFiles(rootProject.ext.destAssetsFile, rootProject.ext.originFtpAssets,
+                    rootProject.ext.destLibsFile, rootProject.ext.originFtpLibs)
+            println 'web-ftp:sync end'
+        }
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api fileTree(include: ['*.jar'], dir: extraLibPath + 'lib/android_jar')
+}

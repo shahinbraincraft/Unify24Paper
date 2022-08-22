@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply from: '../../../../ftp-download.gradle'
+apply from: '../ftp-util.gradle'
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+    defaultConfig {
+        applicationId "com.meishe.mseffectsdk"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a","arm64-v8a" // 谷歌发版专用
+        }
+    }
+    signingConfigs {
+        debug {
+        }
+    }
+    buildTypes {
+        release {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release_MS_ST {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        release_faceU {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"FaceU\""
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            shrinkResources false
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+        debug_MS_ST {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"MS_ST\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+        debug_faceU {
+            buildConfigField "String", "HUMAN_AI_TYPE", "\"FaceU\""
+            minifyEnabled false
+            buildConfigField "Boolean", "PRINT_LOG", "true"
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+    }
+
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    applicationVariants.all{variant->
+        variant.outputs.all { output ->
+            def buildName = "mseffectsdk"
+            def type = variant.buildType.name
+            def releaseApkName = buildName + '_'  + type + "_" + versionName + '_' + releaseTime() + '.apk'
+            outputFileName = releaseApkName
+        }
+    }
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd--HH-mm-ss", TimeZone.getTimeZone("GMT+8"))
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+    implementation project(path: ':render')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.1.1'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.code.gson:gson:2.8.2'
+}

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">fxplugin</string>
+    <string name="import_media">导入</string>
+    <string name="selectMedia">选择素材</string>
+    <string name="today">今天</string>
+
+    <string-array name="select_media">
+        <item>所有内容</item>
+        <item>视频</item>
+        <item>图片</item>
+    </string-array>
+</resources>

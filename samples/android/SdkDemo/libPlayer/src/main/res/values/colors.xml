@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="video_fragment_bg">#242424</color>
+    <color name="video_fragment_play_bar_bg">#80000000</color>
+    <color name="white">#ffffffff</color>
+    <color name="white_8">#ccffffff</color>
+    <color name="msff2a7dff">#FF2A7DFF</color>
+    <color name="mask_line">#FFCC00</color>
+    <color name="color_ff101010">#ff101010</color>
+    <color name="color_main_bg">@color/color_ff101010</color>
+</resources>

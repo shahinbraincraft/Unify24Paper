@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <SeekBar
+        android:id="@+id/colorSeekBar"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
+        android:progressDrawable="@drawable/caption_size_seekbar"
+        android:thumb="@drawable/custom_voice_seekbar_ball"
+        android:visibility="invisible"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/colorSeekBar"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:background="#bb141417">
+
+        <TextView
+            android:id="@+id/function_name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:textColor="@color/white"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/no_use"
+            android:layout_marginTop="10dp"
+            android:padding="3dp">
+        </TextView>
+
+        <com.meicam.effectsdkdemo.view.CenterHorizontalView
+            android:id="@+id/colorTypeRv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@+id/function_name"
+            android:layout_centerHorizontal="true"/>
+
+
+        <ImageView
+            android:id="@+id/colorResetImageView"
+            android:layout_width="39dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/icon_correct_color_reset"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
